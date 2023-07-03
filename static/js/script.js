@@ -1,4 +1,4 @@
-document.getElementById("colorButton").addEventListener("click",() => {
+document.getElementById("check-availability-button").addEventListener("click",() => {
 
     let html =
         `
