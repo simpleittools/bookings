@@ -3,6 +3,7 @@ document.getElementById("check-availability-button").addEventListener("click",()
     let html =
         `
             <form id="check-availability-form" action="" method="post" novalidate class="need-validation">
+                <input type="hidden" name="csrf_token" value="{{.CSRFToken}}
                 <div class="form-row">
                     <div class="col">
                         <div class="form-row" id="reservation-dates-modal">
