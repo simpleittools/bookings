@@ -14,3 +14,12 @@
 .notie-container {
     box-shadow: none;
 }
+
+/*.datepicker {*/
+/*    z-index: 2;*/
+/*}*/
+
+/*don't like this, if deployment, fix with CSS priorities*/
+.swal2-actions{
+    z-index: 0 !important;
+}
