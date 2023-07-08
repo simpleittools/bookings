@@ -2,26 +2,49 @@
 
 {{define "content"}}
 
-
   <div class="container">
+
+
     <div class="row">
-      <div class="col-lg-6 col-ms-6 col-sm-12 col-xs-12 mx-auto d-block">
-        <img src="/static/images/generals-quarters.png" alt="Generals Quarters Room" class="img-fluid img-thumbnail">
+      <div class="col">
+        <img src="/static/images/generals-quarters.png"
+             class="img-fluid img-thumbnail mx-auto d-block room-image" alt="room image">
       </div>
     </div>
+
+
     <div class="row">
       <div class="col">
         <h1 class="text-center mt-4">General's Quarters</h1>
-        <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores impedit molestias mollitia reiciendis soluta velit. Beatae cumque esse incidunt itaque, maiores nemo nesciunt quam suscipit temporibus unde ut voluptate voluptates.</span><span>Ab aliquid amet consectetur corporis, dolore ducimus eos, est excepturi expedita id illo illum ipsa molestiae nihil nisi nobis quam quas quod recusandae rerum saepe similique, sint tempora ut veritatis?</span><span>Accusantium aliquid beatae blanditiis consequuntur culpa distinctio dolor dolore earum enim expedita iste itaque iure laudantium magni minima modi natus officiis provident quasi sunt temporibus veritatis, voluptate voluptates. Quidem, rerum?</span><span>A accusantium adipisci asperiores commodi corporis eaque eius excepturi expedita impedit, incidunt neque nobis nulla optio perspiciatis quae quasi quia quos repellat sint tempora tenetur unde ut veniam veritatis voluptate?</span><span>Consequuntur dicta eligendi, eos esse fuga perferendis qui tempore vel. Ab aliquid itaque nulla porro praesentium quod reprehenderit ullam! Aut cumque doloribus ex incidunt quasi recusandae. At et numquam repudiandae.</span></p>
+        <p>
+          Your home away form home, set on the majestic waters of the Atlantic Ocean, this will be a vacation
+          to remember.
+          Your home away form home, set on the majestic waters of the Atlantic Ocean, this will be a vacation
+          to remember.
+          Your home away form home, set on the majestic waters of the Atlantic Ocean, this will be a vacation
+          to remember.
+          Your home away form home, set on the majestic waters of the Atlantic Ocean, this will be a vacation
+          to remember.
+          Your home away form home, set on the majestic waters of the Atlantic Ocean, this will be a vacation
+          to remember.
+          Your home away form home, set on the majestic waters of the Atlantic Ocean, this will be a vacation
+          to remember.
+        </p>
       </div>
     </div>
+
+
     <div class="row">
+
       <div class="col text-center">
-        <button class="btn btn-success" id="check-availability-button">
-          Check Availability
-        </button>
+
+        <a id="check-availability-button" href="#!" class="btn btn-success">Check Availability</a>
+
       </div>
     </div>
+
+
+
 
   </div>
 
@@ -29,6 +52,58 @@
 
 
 {{define "js"}}
-  <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.3/dist/js/datepicker-full.min.js"></script>
-  <script src="/static/js/modal.js"></script>
+  <script>
+      document.getElementById("check-availability-button").addEventListener("click", function () {
+          let html = `
+        <form id="check-availability-form" action="" method="post" novalidate class="needs-validation">
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-row" id="reservation-dates-modal">
+                        <div class="col">
+                            <input disabled required class="form-control" type="text" name="start" id="start" placeholder="Arrival">
+                        </div>
+                        <div class="col">
+                            <input disabled required class="form-control" type="text" name="end" id="end" placeholder="Departure">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+        `;
+          attention.custom({
+              title: 'Choose your dates',
+              msg: html,
+              willOpen: () => {
+                  const elem = document.getElementById("reservation-dates-modal");
+                  const rp = new DateRangePicker(elem, {
+                      format: 'yyyy-mm-dd',
+                      showOnFocus: true,
+                  })
+              },
+              didOpen: () => {
+                  document.getElementById("start").removeAttribute("disabled");
+                  document.getElementById("end").removeAttribute("disabled");
+              },
+              callback: function(result) {
+                  console.log("called");
+
+                  let form = document.getElementById("check-availability-form");
+                  let formData = new FormData(form);
+                  formData.append("csrf_token", "{{.CSRFToken}}");
+
+                  fetch('/search-availability-json', {
+                      method: "post",
+                      body: formData,
+                  })
+                      .then(response => response.json())
+                      .then(data => {
+                          console.log(data);
+                          console.log(data.ok);
+                          console.log(data.message);
+                      })
+              }
+          });
+      })
+  </script>
 {{end}}
