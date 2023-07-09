@@ -3,9 +3,9 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/simpleittools/bookings/pkg/config"
-	"github.com/simpleittools/bookings/pkg/models"
-	"github.com/simpleittools/bookings/pkg/render"
+	"github.com/simpleittools/bookings/internal/config"
+	"github.com/simpleittools/bookings/internal/models"
+	"github.com/simpleittools/bookings/internal/render"
 	"log"
 	"net/http"
 )

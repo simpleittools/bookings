@@ -3,8 +3,8 @@ package render
 import (
 	"bytes"
 	"github.com/justinas/nosurf"
-	"github.com/simpleittools/bookings/pkg/config"
-	"github.com/simpleittools/bookings/pkg/models"
+	"github.com/simpleittools/bookings/internal/config"
+	"github.com/simpleittools/bookings/internal/models"
 	"html/template"
 	"log"
 	"net/http"
