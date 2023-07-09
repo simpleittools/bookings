@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/simpleittools/bookings/internal/config"
+	"github.com/simpleittools/bookings/internal/forms"
 	"github.com/simpleittools/bookings/internal/models"
 	"github.com/simpleittools/bookings/internal/render"
 	"log"
@@ -97,6 +98,15 @@ func (m *Repository) AvailabilityJSON(w http.ResponseWriter, r *http.Request) {
 	w.Write(out)
 }
 
+// PostReservation handles the posting of a reservation form
+func (m *Repository) PostReservation(w http.ResponseWriter, r *http.Request) {
+
+}
+
 func (m *Repository) MakeReservation(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, r, "make-reservation.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(
+		w, r, "make-reservation.page.tmpl", &models.TemplateData{
+			Form: forms.New(nil),
+		},
+	)
 }
