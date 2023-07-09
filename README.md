@@ -12,3 +12,4 @@ For 3rd pary Javascript
 - [Vanilla JS Datepicker](https://github.com/mymth/vanillajs-datepicker)
 - [Notie](https://github.com/jaredreich/notie)
 - [SweetAlert2](https://github.com/sweetalert2/sweetalert2)
+- [GoValidator](https://github.com/asaskevich/govalidator)
