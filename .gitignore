@@ -1,4 +1,5 @@
 .idea
+database.yml
 
 # Binaries for programs and plugins
 *.exe
