@@ -4,10 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/simpleittools/bookings/internal/config"
+	"github.com/simpleittools/bookings/internal/driver"
 	"github.com/simpleittools/bookings/internal/forms"
 	"github.com/simpleittools/bookings/internal/helpers"
 	"github.com/simpleittools/bookings/internal/models"
 	"github.com/simpleittools/bookings/internal/render"
+	"github.com/simpleittools/bookings/internal/repository"
+	"github.com/simpleittools/bookings/internal/repository/dbrepo"
 	"net/http"
 )
 
@@ -17,12 +20,14 @@ var Repo *Repository
 // Repository is the repository type
 type Repository struct {
 	App *config.AppConfig
+	DB  repository.DatabaseRepo
 }
 
 // NewRepo creates a new repository
-func NewRepo(a *config.AppConfig) *Repository {
+func NewRepo(a *config.AppConfig, db *driver.DB) *Repository {
 	return &Repository{
 		App: a,
+		DB:  dbrepo.NewPostgresRepo(db.SQL, a),
 	}
 }
 

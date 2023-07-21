@@ -14,3 +14,4 @@ For 3rd party
 - [SweetAlert2](https://github.com/sweetalert2/sweetalert2)
 - [GoValidator](https://github.com/asaskevich/govalidator)
 - [Soda](https://gobuffalo.io/documentation/database/pop/) for migrations
+- [JackC PGX](https://github.com/jackc/pgx) Version 4
