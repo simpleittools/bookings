@@ -36,8 +36,7 @@
     <div class="row">
 
       <div class="col text-center">
-
-        <button id="check-availability-button" class="btn btn-success" onclick="book_room('2')">Check Availability</button>
+        <a href="#!" id="check-availability-button" class="btn btn-success" onclick="book_room(2, {{.CSRFToken}})">Check Availability</a>
 
       </div>
     </div>
@@ -49,5 +48,6 @@
 {{end}}
 
 {{define "js"}}
-  <script src="../static/js/book-room.js"></script>
+
+  <script src="/static/js/book-room.js"></script>
 {{end}}

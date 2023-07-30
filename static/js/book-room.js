@@ -1,4 +1,4 @@
-function book_room(room) {
+function book_room(room, csrf) {
     document.getElementById("check-availability-button").addEventListener("click", function () {
         let html = `
         <form id="check-availability-form" action="" method="post" novalidate class="needs-validation">
@@ -34,7 +34,7 @@ function book_room(room) {
             preConfirm: () => {
                 return [
                     document.getElementById('start').value,
-                    document.getElementById('end').value
+                    document.getElementById('end').value,
                 ]
             },
             callback: function(result) {
@@ -42,8 +42,9 @@ function book_room(room) {
 
                 let form = document.getElementById("check-availability-form");
                 let formData = new FormData(form);
-                formData.append("csrf_token", "{{.CSRFToken}}");
+                formData.append("csrf_token", csrf);
                 formData.append("room_id", room);
+                console.log(formData)
 
                 fetch('/search-availability-json', {
                     method: "post",
@@ -53,6 +54,7 @@ function book_room(room) {
                     .then(response => response.json())
                     .then(data => {
                         if (data.ok) {
+                            console.log(data)
                             attention.custom({
                                 icon: 'success',
                                 showConfirmButton: false,
